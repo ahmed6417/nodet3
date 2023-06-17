@@ -8,6 +8,18 @@ img {
     margin-top: 10px;
 }
 
+#post{
+    display: none;
+}
+#postall{
+    display: none;
+}
+
+.show {
+    display: block !important;
+    margin-top: 15px;;
+    margin-bottom: 15px;
+}
 
 div#product {
     background: #000;

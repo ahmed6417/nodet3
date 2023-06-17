@@ -23,7 +23,11 @@ let toRate = document.getElementById("torates").addEventListener('change', funct
     toR = this.value;
     return this.value;
 }); 
+
 function submit(){
+    if (fromR == undefined || toR == undefined){
+        alert ("Please choose valid currency");
+    }else{
     console.log (fromR);
     console.log (toR);
 fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${fromR}&from=${toR}&amount=1`, requestOptions)
@@ -31,8 +35,12 @@ fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${fromR}&from=${to
     .then(function (result){
         currentRate = result.result
         console.log(currentRate);
+        document.getElementById("cuRate").innerHTML = `Current rate is: ${currentRate}<br><br>`;
+        document.getElementById("post").className = "show";
+        document.getElementById("postall").className = "show";
     })
     .catch(error => console.log('error', error));
+}
 }
 
 
@@ -57,7 +65,9 @@ fetch('https://api.escuelajs.co/api/v1/products', {
     console.log(result);
     document.getElementById("result").innerHTML = `
     <div id="product">
+    <div class="product-data">Title: <em class="result">${result.category.id}</em></div>
     <div class="product-data">Product ID: <em class="result">${result.id}</em></div>
+    <div class="product-data">Category: <em class="result">${result.category.name}</em></div>
     <div class="product-data">Product Description: <em class="result">${result.description}</em></div>
     <div class="product-data">Product Images: <img src="${result.images[0]}"></div>
     <div class="product-data">Product Price: <em class="result">${result.price}</em></div>
